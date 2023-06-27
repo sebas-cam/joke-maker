@@ -2,12 +2,17 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-export default function Select({title, options}) {
+export default function Select({title, options, onOptionChange}) {
   const [selected, setSelected] = useState(options[0])
+
+  const handleSelectChange = (selectedOption) => {
+    setSelected(selectedOption);
+    onOptionChange(selectedOption, {"title":title});    
+  };
 
   return (
     <div className="w-full">
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={selected} onChange={handleSelectChange}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selected.name}</span>

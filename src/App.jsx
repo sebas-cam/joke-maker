@@ -1,8 +1,26 @@
+import { useState } from 'react'
 import './style/App.css'
 import Select from './components/select'
 import Config from './config/configData'
 
 function App() {
+
+  const [category, setCategory] = useState("Any")
+  const [language, setLanguage] = useState("en")
+
+  const handleSelectChange = (selectedOption, title) => {
+    let option = selectedOption.name;
+    let titleOption = title.title;
+    if (titleOption === "Category") {
+      setCategory(option); 
+    }else if(titleOption === "Language"){
+      if (option.includes("English")) {
+        setLanguage("en")  
+      }else{
+        setLanguage("es")  
+      }
+    }             
+  };
 
   return (
     <>
@@ -17,7 +35,7 @@ function App() {
               <>
               <div key={item.id} className={item.claseName + ' pb-6'} >
                 <span className='font-semibold text-[#6b6aff]'>{item.name}</span>                 
-                <Select title={item.name} options={item.opciones}/>
+                <Select title={item.name} options={item.opciones} onOptionChange={handleSelectChange}/>
               </div>              
               </>
             )
