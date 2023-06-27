@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './style/App.css'
 import Select from './components/select'
 import Config from './config/configData'
+import GetJoke from './components/getJokeButton'
 
 function App() {
 
@@ -25,8 +26,8 @@ function App() {
   return (
     <>
     <section className="h-screen flex justify-center items-center">
-      <div className="detailsContainer text-[#000] bg-[#fff] p-20 rounded-3xl">
-        <div className='min-w-[20rem]'>
+      <div className="detailsContainer text-[#000] bg-[#fff] md:p-20 p-8 rounded-3xl">
+        <div className='md:min-w-[20rem] min-w-[16rem]'>
           <h1 className='text-center pb-6 text-2xl text-[#6b6aff]'>Generate a joke</h1>
                           
           {
@@ -43,7 +44,7 @@ function App() {
           }   
 
           <div className='text-center pt-4'>
-            <button className='getJoke'>Generate Joke</button>
+            <GetJoke category={category} language={language}/>
           </div>       
 
         </div>        
